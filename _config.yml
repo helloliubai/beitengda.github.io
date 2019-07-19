@@ -4,9 +4,9 @@
 # ---------------------------------------------------------------
 
 # Site
-title: 千山
+title: 技术千山
 subtitle: Choose You Own Path
-description: 接受自己的渺小，累计自己的伟大
+description: 阅尽千山自成峰
 author: 千山
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
@@ -213,8 +213,8 @@ font:
 #social:
   #LinkLabel: Link
 social:
-    GitHub: https://github.com/ShixiangWang
-    简书: http://www.jianshu.com/u/b6608e27dc74
+    # GitHub: https://github.com/beitengda
+    开发者头条: https://toutiao.io/subjects/69085
 # Social Links Icons
 # Icon Mapping:
 #   Map a menu item to a specific FontAwesome icon name.
@@ -231,8 +231,8 @@ social_icons:
 
   
 # reward
-reward_comment: 人该是自己生活的主宰，而不是别人手里的行货
-alipay: /images/reward_image/alipay-reward-image.jpg
+reward_comment: 
+alipay: /images/author/alipay-reward.png
 # Sidebar Avatar
 # in directory: /assets/images/avatar.gif
 #avatar:
@@ -291,12 +291,7 @@ sidebar:
 links_title: 推荐阅读
 links:
   阮一峰的网络日志: http://www.ruanyifeng.com/blog/archives.html
-  R的极客理想系列: http://blog.fens.me/series-r/
-  谢益辉: https://yihui.name/
-  解螺旋的矿工: http://www.huangshujia.me/
-  GuangchuangYu: https://github.com/GuangchuangYu
-  生信技能树: https://vip.biotrainee.com/
-
+  田守枝的技术博客: http://www.tianshouzhi.com/
 # ---------------------------------------------------------------
 # Post Settings
 # ---------------------------------------------------------------
@@ -382,7 +377,7 @@ han: false
 #swiftype_key:
 
 # Baidu Analytics ID
-baidu_analytics: 36443ede179652b0cf6a526f12b1976f
+baidu_analytics: 903e35765a10723347ede16a29f9e061
 
 # Duoshuo ShortName
 #duoshuo_shortname:
