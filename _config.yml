@@ -6,7 +6,7 @@
 # Site
 title: 千山
 subtitle: Choose You Own Path
-description: 接受自己的渺小，累计自己的伟大
+description: 接受自己的渺小，累积自己的伟大
 author: 千山
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
@@ -120,7 +120,6 @@ menu:
   about: /about/
   archives: /archives/
   tags: /tags/
-  sitemap: /sitemap.xml
 
 
 # Enable/Disable menu icons.
@@ -213,8 +212,8 @@ font:
 #social:
   #LinkLabel: Link
 social:
-    GitHub: https://github.com/ShixiangWang
-    简书: http://www.jianshu.com/u/b6608e27dc74
+    GitHub: https://github.com/beitengda
+    简书: http://wait.com
 # Social Links Icons
 # Icon Mapping:
 #   Map a menu item to a specific FontAwesome icon name.
@@ -291,12 +290,7 @@ sidebar:
 links_title: 推荐阅读
 links:
   阮一峰的网络日志: http://www.ruanyifeng.com/blog/archives.html
-  R的极客理想系列: http://blog.fens.me/series-r/
-  谢益辉: https://yihui.name/
-  解螺旋的矿工: http://www.huangshujia.me/
-  GuangchuangYu: https://github.com/GuangchuangYu
-  生信技能树: https://vip.biotrainee.com/
-
+  田守枝的技术博客: http://www.tianshouzhi.com/
 # ---------------------------------------------------------------
 # Post Settings
 # ---------------------------------------------------------------
