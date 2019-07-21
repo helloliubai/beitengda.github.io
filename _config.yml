@@ -499,7 +499,7 @@ busuanzi_count:
   # count values only if the other configs are false
   enable: true
   # custom uv span for the whole site
-  site_uv: false
+  site_uv: true
   site_uv_header: 本站访问数
   site_uv_footer: 人次
   # custom pv span for the whole site
