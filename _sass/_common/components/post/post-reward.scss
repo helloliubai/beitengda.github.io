@@ -35,21 +35,21 @@
       border:0;
   }
   #QR img{
-      width: 180px;
+      width: 360px;
       max-width: 100%;
       display: inline-block;
       margin: 0.8em 2em 0 2em;
   }
-  #wechat:hover p{
-      animation: roll 0.1s infinite linear;
-      -webkit-animation: roll 0.1s infinite linear;
-      -moz-animation: roll 0.1s infinite linear;
-  }
-  #alipay:hover p{
-      animation: roll 0.1s infinite linear;
-      -webkit-animation: roll 0.1s infinite linear;
-      -moz-animation: roll 0.1s infinite linear;
-  }
+//   #wechat:hover p{
+//       animation: roll 0.1s infinite linear;
+//       -webkit-animation: roll 0.1s infinite linear;
+//       -moz-animation: roll 0.1s infinite linear;
+//   }
+//   #alipay:hover p{
+//       animation: roll 0.1s infinite linear;
+//       -webkit-animation: roll 0.1s infinite linear;
+//       -moz-animation: roll 0.1s infinite linear;
+//   }
   @include keyframes(roll) {
       from {
         @include transform(rotateZ(30deg));

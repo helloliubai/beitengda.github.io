@@ -6,7 +6,7 @@
 # Site
 title: 千山
 subtitle: Choose You Own Path
-description: 接受自己的渺小，累积自己的伟大
+description: 阅尽千山自成峰
 author: 千山
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
@@ -120,6 +120,7 @@ menu:
   about: /about/
   archives: /archives/
   tags: /tags/
+  sitemap: /sitemap.xml
 
 
 # Enable/Disable menu icons.
@@ -213,7 +214,7 @@ font:
   #LinkLabel: Link
 social:
     GitHub: https://github.com/beitengda
-    简书: http://wait.com
+    开发者头条: https://toutiao.io/subjects/69085
 # Social Links Icons
 # Icon Mapping:
 #   Map a menu item to a specific FontAwesome icon name.
@@ -230,8 +231,8 @@ social_icons:
 
   
 # reward
-reward_comment: 人该是自己生活的主宰，而不是别人手里的行货
-alipay: /images/reward_image/alipay-reward-image.jpg
+reward_comment: 
+alipay: /images/author/alipay-reward.png
 # Sidebar Avatar
 # in directory: /assets/images/avatar.gif
 #avatar:
