@@ -281,6 +281,8 @@ sidebar:
   # Scroll percent label in b2t button
   scrollpercent: false
 
+google_site_verification: true
+baidu_site_verification:  true
 
 # Blog rolls
 #links_title: Links
