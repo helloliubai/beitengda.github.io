@@ -37,7 +37,7 @@ post:
     author: 本文作者
     link: 本文链接
     license_title: 版权声明
-    license_content: '转载请注明出处！'
+    license_content: '码字不易，转载请注明出处。'
 
 page:
   totally: 共有
