@@ -386,7 +386,7 @@ baidu_analytics: 903e35765a10723347ede16a29f9e061
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname: anchoret
   count: true
 
