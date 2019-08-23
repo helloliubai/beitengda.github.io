@@ -292,8 +292,7 @@ baidu_site_verification:  fVYANFpZhf
   #Title: http://example.com/
 links_title: 推荐阅读
 links:
-  凤凰牌老熊: http://doc.cocolian.cn/
-  阮一峰的网络日志: http://www.ruanyifeng.com/blog/
+  凤凰牌老熊     : http://doc.cocolian.cn/
   田守枝的技术博客: http://www.tianshouzhi.com/
 # ---------------------------------------------------------------
 # Post Settings
