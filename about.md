@@ -1,9 +1,9 @@
 ---
 layout: post
-title: About Me
+title: 千山
 header: About Me
 group: navigation
 ---
 
-    千山，互联网电商和支付行业打杂的。
+    互联网电商、支付行业打杂的。
 
