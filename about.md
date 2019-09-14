@@ -1,8 +1,11 @@
 ---
-layout: post
+layout: layout
 title: 千山
-header: About Me
+header: 千山
 group: navigation
 ---
 
-    互联网电商、支付行业打杂的。
+
+<center>互联网电商/支付行业打杂的</center>  
+
+![](/images/author/qianshan.jpeg){:height="400" width="400"}
