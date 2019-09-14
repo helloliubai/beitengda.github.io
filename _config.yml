@@ -120,7 +120,7 @@ menu:
   about: /about.html
   archives: /archives/
   tags: /tags/
-  sitemap: /sitemap.xml
+  # sitemap: /sitemap.xml
 
 
 # Enable/Disable menu icons.
