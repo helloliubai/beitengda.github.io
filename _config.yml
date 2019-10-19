@@ -5,8 +5,8 @@
 
 # Site
 title: 技术千山
-subtitle: Choose You Own Path
-description: 阅尽千山自成峰
+subtitle: 千山的博客
+description: 接受自己的渺小，累积自己的伟大
 author: 千山
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
@@ -14,9 +14,9 @@ date_format: '%Y-%m-%d'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com' and baseurl as '/child'
-url:
+url: http://www.qianshan.tech
 baseurl:
-permalink: pretty
+permalink: none
 
 # Pagination
 paginate: 10
@@ -74,7 +74,7 @@ plugins:
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `assets/` directory.
-favicon: /assets/favicon.ico
+favicon: /assets/panda.ico
 
 # Set default keywords (Use a comma to separate)
 keywords: "Jekyll, NexT"
@@ -86,7 +86,7 @@ rss:
 
 # Specify the date when the site was setup
 #since: 2015
-since: 2017
+since: 2018
 # icon between year and author @Footer
 authoricon: heart
 
@@ -117,10 +117,10 @@ index_with_subtitle: false
 menu:
   home: /
   categories: /categories/
-  about: /about/
+  about: /about.html
   archives: /archives/
   tags: /tags/
-  sitemap: /sitemap.xml
+  # sitemap: /sitemap.xml
 
 
 # Enable/Disable menu icons.
@@ -213,8 +213,7 @@ font:
 #social:
   #LinkLabel: Link
 social:
-    # GitHub: https://github.com/beitengda
-    开发者头条: https://toutiao.io/subjects/69085
+    微信公众号: /assets/images/qianshanwechat.svg
 # Social Links Icons
 # Icon Mapping:
 #   Map a menu item to a specific FontAwesome icon name.
@@ -228,6 +227,7 @@ social_icons:
   Twitter: twitter
   Weibo: weibo
   简书: etsy
+  微信公众号: wechat
 
   
 # reward
@@ -281,6 +281,8 @@ sidebar:
   # Scroll percent label in b2t button
   scrollpercent: false
 
+google_site_verification: true
+baidu_site_verification:  fVYANFpZhf
 
 # Blog rolls
 #links_title: Links
@@ -290,8 +292,9 @@ sidebar:
   #Title: http://example.com/
 links_title: 推荐阅读
 links:
-  阮一峰的网络日志: http://www.ruanyifeng.com/blog/archives.html
+  凤凰牌老熊: http://doc.cocolian.cn/
   田守枝的技术博客: http://www.tianshouzhi.com/
+
 # ---------------------------------------------------------------
 # Post Settings
 # ---------------------------------------------------------------
@@ -357,7 +360,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night
 
 
 # ---------------------------------------------------------------
@@ -377,14 +380,14 @@ han: false
 #swiftype_key:
 
 # Baidu Analytics ID
-baidu_analytics: 903e35765a10723347ede16a29f9e061
+baidu_analytics: 25c6f5d7ea73e02eb9b7350c8768c7fa
 
 # Duoshuo ShortName
 #duoshuo_shortname:
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname: anchoret
   count: true
 
@@ -541,7 +544,7 @@ calendar:
 
 # Algolia Search
 algolia_search:
-  enable: true
+  enable: false
   hits:
     per_page: 10
   labels:
@@ -597,7 +600,7 @@ pace: false
 pace_theme: pace-theme-minimal
 
 # Canvas-nest
-canvas_nest: true
+canvas_nest: false
 
 # three_waves
 three_waves: false
