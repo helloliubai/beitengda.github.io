@@ -21,7 +21,11 @@ Error updating database. Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLTransaction
 联系dba查看死锁日志如下:  
 ![死锁日志](https://img-blog.csdnimg.cn/20191121125954480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dlcWlhbmRlYmVp,size_16,color_FFFFFF,t_70)
 
-> mysql查看死锁日志命令: show engine innodb status;
+> mysql对死锁有两种处理方式:  
+1.连接等待直到超时。  
+2.开启死锁监测，发现死锁时主动回滚当前事务，让其他事务可以正常执行。（innodb_deadlock_detect=on)   
+>   
+>mysql查看最近的死锁日志命令: show engine innodb status;
 
 ## 背景
 对业务逻辑不做赘述，简单理解为账户交易采用TCC的模式，先冻结，再确认入账或撤销。
