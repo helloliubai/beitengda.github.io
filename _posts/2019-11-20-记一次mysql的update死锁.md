@@ -1,7 +1,7 @@
 ---
 title: 记一次mysql的update死锁
 date: 2019-11-20
-comments: false
+comments: true
 categories:
 - mysql
 tags:

@@ -12,6 +12,16 @@ author: 千山
 language: zh-Hans
 date_format: '%Y-%m-%d'
 
+#LeanCloud评论系统
+valine_comment:
+  enable: true
+# app_id
+  leancloud_appid: Ftr3yms2bMC2Ql5KpiSeBztu-gzGzoHsz
+# app_key
+  leancloud_appkey: vizzqBfHqRngRWNihcg7jK7b
+# placeholde
+  placeholder: "在此输入评论...."
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com' and baseurl as '/child'
 url: http://www.qianshan.tech
