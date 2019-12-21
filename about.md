@@ -5,4 +5,4 @@ header: 千山
 group: navigation
 ---  
 
-![](/images/author/jishuqianshan.png){:height="600" width="800"}
+![](https://img-blog.csdnimg.cn/20191221203110149.png){:height="600" width="800"}
