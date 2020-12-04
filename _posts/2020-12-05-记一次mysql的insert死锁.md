@@ -27,12 +27,12 @@ else
   insert一条新记录
 ```
 
-结果线上频频出现insert死锁。
+看起来似乎没什么问题，线上频频出现insert死锁。
 
-这里贴个简单的SQL，便于有兴趣研究的同学去复现实验。
+这里总结下，分享下实验SQL，便于有兴趣研究的同学去复现。
 ```sql
 CREATE TABLE `activity_log`(
-  `id`          bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id`            bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id`       varchar(16) NOT NULL COMMENT '用户id',
   `activity_id`   varchar(32) NOT NULL COMMENT '活动id',
   `time_count`    int(11)     DEFAULT 0 COMMENT '活动参与次数',
@@ -117,4 +117,4 @@ Record lock, heap no 1 PHYSICAL RECORD: n_fields 1; compact format; info bits 0
 
 [《记一次mysql的update死锁》](https://www.qianshan.tech/mysql/%E8%AE%B0%E4%B8%80%E6%AC%A1mysql%E7%9A%84update%E6%AD%BB%E9%94%81.html)
 
-![](https://imgkr2.cn-bj.ufileos.com/66b3ff99-f2f5-4ba4-9002-a84f9b741fb1.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=2YzTlWZbIyDjagOT%252FHbuXJWDPlw%253D&Expires=1607186031 =70%x)
+![](https://imgkr2.cn-bj.ufileos.com/66b3ff99-f2f5-4ba4-9002-a84f9b741fb1.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=2YzTlWZbIyDjagOT%252FHbuXJWDPlw%253D&Expires=1607186031)
