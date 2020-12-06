@@ -13,7 +13,7 @@ tags:
 
 <!-- more -->
 
-## 1 背景
+## 背景
 
 “如果库里有对应记录，就更新，没有就插入”
 
@@ -45,10 +45,11 @@ UPDATE activity_log SET time_count=time_count+1 WHERE `user_id`='5' AND `activit
 INSERT INTO activity_log(`user_id`,`activity_id`) VALUES('5','2020');
 ```
 
-## 2 并发执行现场
-![](https://imgkr2.cn-bj.ufileos.com/835a5afe-9b38-406a-9568-4007eff97116.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=fuj3E8nlC%252FZtrQkwJvvm3iB%252F184%253D&Expires=1607185625)
+## 并发执行现场
 
-## 3 死锁日志分析
+![](https://gitee.com/geqiandebei/picture/raw/master/2020-12-6/1607270021456-QQ20201205-0.png)
+
+## 死锁日志分析
 
 > 查看最近的死锁日志mysql命令：show engine innodb status
 
@@ -117,4 +118,4 @@ Record lock, heap no 1 PHYSICAL RECORD: n_fields 1; compact format; info bits 0
 
 [《记一次mysql的update死锁》](https://www.qianshan.tech/mysql/%E8%AE%B0%E4%B8%80%E6%AC%A1mysql%E7%9A%84update%E6%AD%BB%E9%94%81.html)
 
-![](https://imgkr2.cn-bj.ufileos.com/66b3ff99-f2f5-4ba4-9002-a84f9b741fb1.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=2YzTlWZbIyDjagOT%252FHbuXJWDPlw%253D&Expires=1607186031)
+![](https://gitee.com/geqiandebei/picture/raw/master/2020-12-6/1607270117025-QQ20201205-1.png)
