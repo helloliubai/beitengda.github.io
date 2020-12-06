@@ -9,7 +9,7 @@ tags:
 - mysql
 ---
 
-先update再insert的并发死锁问题
+先update再insert的并发死锁问题分析。
 
 <!-- more -->
 
