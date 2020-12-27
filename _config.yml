@@ -83,8 +83,8 @@ plugins:
 # Site Information Settings
 # ---------------------------------------------------------------
 
-# Put your favicon.ico into `assets/` directory.
-favicon: /assets/panda.ico
+# 网站图标配置 Put your favicon.ico into `assets/` directory.
+# favicon: /assets/panda.ico
 
 # Set default keywords (Use a comma to separate)
 keywords: "java,成都,电商,分布式"
