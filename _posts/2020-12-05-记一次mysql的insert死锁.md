@@ -107,7 +107,7 @@ Record lock, heap no 1 PHYSICAL RECORD: n_fields 1; compact format; info bits 0
 >在InnoDB存储引擎中，每个数据页中有两个虚拟的行记录，用来界定记录的边界。Infimum 是比该页中任何主键值都要小的值。Supremum 指的是比任何可能打的值还要大的值。这两个值在页创建时被建立，并且任何情况下不会删除。
 
 
-**最终2分析** 
+**最终分析** 
 
 两个事务update不存在的记录，先后获得了间隙锁（gap锁），gap锁之间是兼容的所以在update环节不会阻塞。
 
