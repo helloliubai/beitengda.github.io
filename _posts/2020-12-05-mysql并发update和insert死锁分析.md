@@ -1,5 +1,5 @@
 ---
-title: 记一次mysql的insert死锁
+title: mysql并发update和insert死锁分析
 date: 2020-12-05
 comments: true
 categories:
@@ -7,11 +7,8 @@ categories:
 tags:
 - 高并发
 - mysql
+excerpt: '并发update和insert场景下，插入意向锁和gap锁的锁竞争分析'
 ---
-
-先update再insert的并发死锁问题分析。
-
-<!-- more -->
 
 ## 背景
 
@@ -115,6 +112,8 @@ Record lock, heap no 1 PHYSICAL RECORD: n_fields 1; compact format; info bits 0
 
 
 **推荐阅读**: 
+
+[《mysql5.7官方文档》](https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-transaction-model.html)
 
 [《记一次mysql的update死锁》](https://www.qianshan.tech/mysql/%E8%AE%B0%E4%B8%80%E6%AC%A1mysql%E7%9A%84update%E6%AD%BB%E9%94%81.html)
 
