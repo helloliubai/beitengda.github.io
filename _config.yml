@@ -21,6 +21,8 @@ valine_comment:
   leancloud_appkey: vizzqBfHqRngRWNihcg7jK7b
 # placeholde
   placeholder: "在此输入评论...."
+# 绑定域名
+  leancloud_bind_url: leancloud.qianshan.tech
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com' and baseurl as '/child'
