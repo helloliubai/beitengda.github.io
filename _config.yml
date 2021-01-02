@@ -89,7 +89,7 @@ plugins:
 # favicon: /assets/panda.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "java,成都,电商,分布式"
+keywords: "java,面试,电商,分布式"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
