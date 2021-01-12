@@ -110,6 +110,38 @@ Record lock, heap no 1 PHYSICAL RECORD: n_fields 1; compact format; info bits 0
 
 二者都持有gap锁，然后去竞争插入意向锁。当存在其他会话持有gap锁的时候，当前会话申请不了插入意向锁，导致死锁。
 
+## 推荐实现
+
+### 优先更新
+
+针对更新频繁的场景，可先查询，如果存在则更新，否则插入  
+
+```java
+if(daoService.queryByUniqueKey(唯一键查询条件) != null){
+  daoService.update(已有记录);
+} else {
+  daoService.insert(新记录);
+}
+```
+
+强调下此处是**快照读**，如果担心并发更新的问题可以选择乐观锁模式更新。因为如果用for update 进行当前读，当 for update by 唯一索引没有命中对应的记录则会上gap锁，由此还会因为gap锁和插入意向锁的竞争出现和上面类似的死锁情况。
+
+### 优先插入
+
+先尝试插入，插入遇唯一键冲突时则对数据库已有记录更新。
+
+```java 
+try {
+  daoService.insert(新记录);
+} catch (唯一键冲突异常 DuplicateKeyException e){
+  daoService.update(已有记录);
+}
+```
+
+有人评论说用一个SQL语句就解决了：**insert on duplicate key**  
+
+其实这种实现仍然会产生gap锁和插入意向锁的问题，不再赘述.可参考这篇: [传送门](https://www.cnblogs.com/jay-huaxiao/p/11456921.html)
+
 
 **推荐阅读**: 
 
