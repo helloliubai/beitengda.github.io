@@ -115,7 +115,10 @@ public ConfigurableApplicationContext run(String... args) {
 
 3. springboot的动态代理是怎么实现的？
 
-答案在核心流程
+详细流程主要分为三个阶段
+1. 上下文初始化阶段
+2. BeanDefinetion获取和处理阶段
+3. Bean的实例化阶段
 
 **this.refreshContext(context);** 的实现里，下面看refresh的代码
 
@@ -176,4 +179,64 @@ public void refresh() {
         }
     }
 
+```
+
+### Bean创建阶段
+
+Bean的生成主要是三个阶段: 创建、属性赋值、初始化
+
+```java
+protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final @Nullable Object[] args) {
+
+		
+		BeanWrapper instanceWrapper = null;
+		
+    // 实例化对象
+		if (instanceWrapper == null) {
+			instanceWrapper = createBeanInstance(beanName, mbd, args);
+		}
+		
+		// 单例且正在创建中
+		boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
+				isSingletonCurrentlyInCreation(beanName));
+		if (earlySingletonExposure) {
+		  
+      //三级缓存，延迟暴露最终对象
+			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
+		}
+
+		// 初始化
+		Object exposedObject = bean;
+		try {
+			populateBean(beanName, mbd, instanceWrapper);
+			exposedObject = initializeBean(beanName, exposedObject, mbd);
+		}
+```
+
+
+
+**初始化阶段** 
+
+```java
+	protected Object initializeBean(final String beanName, final Object bean, @Nullable RootBeanDefinition mbd) {
+  
+      //回调Aware接口 BeanNameAware BeanFactoryAware
+      invokeAwareMethods(beanName, bean);
+
+      Object wrappedBean = bean;
+      if (mbd == null || !mbd.isSynthetic()) {
+      //执行BeanPostProcessor初始化前接口
+        wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+      }
+    
+      //执行初始化代码 回调InitializingBean、指定的init_method方法
+      invokeInitMethods(beanName, wrappedBean, mbd);
+      
+      if (mbd == null || !mbd.isSynthetic()) {
+      //执行BeanPostProcessor初始化后接口
+        wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
+      }
+
+      return wrappedBean;
+	}
 ```
