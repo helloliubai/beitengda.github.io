@@ -94,11 +94,12 @@ public ConfigurableApplicationContext run(String... args) {
         }
 
         try {
-            // //发布事件：running
+            // 发布事件：running
             listeners.running(context);
             return context;
         } catch (Throwable var9) {
-          // 捕获异常，打印错误日志，释放资源，发布应用启动失败事件
+          // 捕获异常，打印错误日志，释放资源 
+          // 发布事件：fail
             this.handleRunFailure(context, var9, exceptionReporters, (SpringApplicationRunListeners)null);
             throw new IllegalStateException(var9);
         }
@@ -106,14 +107,6 @@ public ConfigurableApplicationContext run(String... args) {
 ```
 
 ## 详细流程
-
-看了上面的大概流程，一定还有很多困惑没有答案，先抛出几个问题
-
-1. springboot怎么找到 @Service、@Component @Configuration注解修饰的类并实例化对象的？
-
-2. sringboot的自动配置是怎么实现的？
-
-3. springboot的动态代理是怎么实现的？
 
 详细流程主要分为三个阶段
 1. 上下文初始化阶段
@@ -240,3 +233,62 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
       return wrappedBean;
 	}
 ```
+
+#### 常见问题解释
+
+1. sringboot的自动配置是怎么实现的？
+
+底层依赖BeanFactoryProcessor回调实现，核心的实现类是ConfigurationClassPostProcessor，这个类会从启动类开始，扫描指定的包然后递归地解析每个类的定义。
+
+而其中@Import注解很重要，我们经常用类似@EnableXXX的注解来实现某一个功能组件的开启和注入，而@EnableXXX注解通常里面就会@Import对应的外部类或者ImportSelector接口返回的类列表。ConfigurationClassPostProcessor会扫描这些外部类。
+
+我们常用的一些starter包，之所以引用进来就可以直接启用对应的功能，其原理是Springboot启动类注解里默认嵌套引用了这个注解，而里面的
+**AutoConfigurationImportSelector**
+这个东东，会去加载spring资源目录下spring.factories里定义的启动类,而每个starter包里都会在spring.factories文件里定义配置入口类。
+```java
+
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@AutoConfigurationPackage
+@Import({AutoConfigurationImportSelector.class})
+public @interface EnableAutoConfiguration {
+    String ENABLED_OVERRIDE_PROPERTY = "spring.boot.enableautoconfiguration";
+
+    Class<?>[] exclude() default {};
+
+    String[] excludeName() default {};
+}
+```
+
+2. springboot的动态代理是怎么实现的？
+
+背题的话很多人都能答上来动态代理是通过cglib和jdk动态代理实现的。然而具体过程Juin说不清了。比如说如果一个类方法有多个拦截器(切面逻辑),会有多个代理对象么，如何同时生效呢？
+
+简单来说分两步
+
+1. 先生成切面类和对一个的Advice对象
+2. 在Bean实例化之后，调用BeanPostProcessor初始化后置接口，会执行代理相关的初始化后置逻辑，返回代理对象。（如果对应的Bean有适用的Advice说明可以被代理）
+
+参考文章：https://blog.csdn.net/woshilijiuyi/article/details/83934407
+
+3. 三级缓存和循环依赖
+
+所谓三级缓存指的是下面
+```java
+/** 1级缓存 Cache of singleton objects: bean name to bean instance. */
+	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
+
+	/** 2级缓存 Cache of early singleton objects: bean name to bean instance. */
+	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
+
+	/** 3级缓存 Cache of singleton factories: bean name to ObjectFactory. */
+	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+```
+
+二级缓存可以解决循环依赖，但是解决不了动态代理的问题。 因为实例化是提前曝光，
+还没有走到动态代理的逻辑，所以获取到的知识原生对象而不是代理对象，Spring选择先暴露一个对象工厂而不是实际对象，在需要注入的时候才触发工厂的生成代理对象逻辑。
+
+
+4. FactoryBean的作用
