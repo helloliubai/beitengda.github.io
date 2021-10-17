@@ -184,8 +184,11 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 		
 		BeanWrapper instanceWrapper = null;
 		
-    // 实例化对象
+        // 实例化对象
 		if (instanceWrapper == null) {
+            // 调用InstantiationAwareBeanPostProcessor接口postProcessBeforeInstantiation方法
+            // 如果调用InstantiationAwareBeanPostProcessor接口postProcessAfterInstantiation方法
+            //如果上面没有生成代理的实例对象，则走下面的流程正常实例化
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		
