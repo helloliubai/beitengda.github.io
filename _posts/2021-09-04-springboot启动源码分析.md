@@ -239,7 +239,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 
 ## 常见问题
 
-1. sringboot的自动配置是怎么实现的？
+### sringboot的自动配置是怎么实现的？
 
 底层依赖BeanFactoryProcessor回调实现，核心的实现类是ConfigurationClassPostProcessor，这个类会从启动类开始，扫描指定的包然后递归地解析每个类的定义。
 
@@ -265,7 +265,7 @@ public @interface EnableAutoConfiguration {
 }
 ```
 
-2. springboot的动态代理是怎么实现的？
+### springboot的动态代理是怎么实现的？
 
 背题的话很多人都能答上来动态代理是通过cglib和jdk动态代理实现的。然而具体过程Juin说不清了。比如说如果一个类方法有多个拦截器(切面逻辑),会有多个代理对象么，如何同时生效呢？
 
@@ -276,7 +276,7 @@ public @interface EnableAutoConfiguration {
 
 参考文章：https://blog.csdn.net/woshilijiuyi/article/details/83934407
 
-3. 三级缓存和循环依赖
+### 三级缓存和循环依赖
 
 所谓三级缓存指的是下面
 ```java
@@ -294,7 +294,7 @@ public @interface EnableAutoConfiguration {
 还没有走到动态代理的逻辑，所以获取到的知识原生对象而不是代理对象，Spring选择先暴露一个对象工厂而不是实际对象，在需要注入的时候才触发工厂的生成代理对象逻辑。
 
 
-4. FactoryBean的作用
+### FactoryBean的作用
 
 
 ![](https://gitee.com/geqiandebei/picture/raw/master/2020-12-6/1607270117025-QQ20201205-1.png)
