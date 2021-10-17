@@ -8,7 +8,7 @@ categories:
 tags:
 - springboot
 - java
-excerpt: '摘要'
+excerpt: 'springboot关键源码分析'
 ---
 
 ## 全局流程 
@@ -174,7 +174,7 @@ public void refresh() {
 
 ```
 
-### Bean创建阶段
+### Bean创建流程
 
 Bean的生成主要是三个阶段: 创建、属性赋值、初始化
 
@@ -208,7 +208,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 
 
 
-**初始化阶段** 
+### Bean初始化阶段
 
 ```java
 	protected Object initializeBean(final String beanName, final Object bean, @Nullable RootBeanDefinition mbd) {
@@ -234,7 +234,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 	}
 ```
 
-#### 常见问题解释
+## 常见问题
 
 1. sringboot的自动配置是怎么实现的？
 
@@ -292,3 +292,6 @@ public @interface EnableAutoConfiguration {
 
 
 4. FactoryBean的作用
+
+
+![](https://gitee.com/geqiandebei/picture/raw/master/2020-12-6/1607270117025-QQ20201205-1.png)
