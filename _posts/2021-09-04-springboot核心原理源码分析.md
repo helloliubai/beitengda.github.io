@@ -280,7 +280,7 @@ public @interface EnableAutoConfiguration {
 
 所谓三级缓存指的是下面
 ```java
-/** 1级缓存 Cache of singleton objects: bean name to bean instance. */
+    /** 1级缓存 Cache of singleton objects: bean name to bean instance. */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
 	/** 2级缓存 Cache of early singleton objects: bean name to bean instance. */
