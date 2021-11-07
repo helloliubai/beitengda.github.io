@@ -275,8 +275,6 @@ public @interface EnableAutoConfiguration {
 
 ### springboot的动态代理是怎么实现的？
 
-背题的话很多人都能答上来动态代理是通过cglib和jdk动态代理实现的。然而具体过程Juin说不清了。比如说如果一个类方法有多个拦截器(切面逻辑),会有多个代理对象么，如何同时生效呢？
-
 简单来说分两步
 
 1. 先生成切面类和对一个的Advice对象
