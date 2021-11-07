@@ -8,12 +8,19 @@ categories:
 tags:
 - springboot
 - java
-excerpt: 'springboot关键源码分析'
 ---
 
-## 全局流程 
+## 前言
 
-Springboot的启动流程中的关键步骤都会发送对应的事件，大家看这个事件发送的接口源码，其实从上到下串起来就是大概的流程。 
+本文旨在从启动流程切入，解释一些通俗常见的问题:
+1. spring启动时做了什么，怎么扫描包加载类的?
+2. 我们常用的@Configuration @Component @Autowired注解的是在哪一步生效的，如何生效的?
+3. 自动配置是如何生效的，为什么业务工程引入一个starter包或者一个类似@EnableXXX这样的注解就可以开启某个功能了?
+4. springb的aop动态代理是怎么实现的(可能背面试题的同学都会答底层依赖cglib或者jdk，但再追问下就露怯了)
+
+## 启动流程概览
+
+spring的启动流程关键步骤都会发送对应的事件，大家看这个事件发送的接口源码，其实从上到下串起来就是大概的流程。下面对流程的详细剖析会体现出哪些节点会触发对应的事件。
 
 ```java
 public interface SpringApplicationRunListener {
@@ -32,8 +39,9 @@ public interface SpringApplicationRunListener {
     void failed(ConfigurableApplicationContext context, Throwable exception);
 }
 ```
+<!-- more -->
 
-启动流程代码。
+## 启动流程代码
 
 ```java
 public ConfigurableApplicationContext run(String... args) {
@@ -106,12 +114,14 @@ public ConfigurableApplicationContext run(String... args) {
     }
 ```
 
-## 详细流程
+## 核心流程 refreshContext
 
-详细流程主要分为三个阶段
+上下文刷新流程主要分为三个阶段
 1. 上下文初始化阶段
 2. BeanDefinetion获取和处理阶段
 3. Bean的实例化阶段
+
+### 核心流程概览
 
 **this.refreshContext(context);** 的实现里，下面看refresh的代码
 
@@ -174,16 +184,16 @@ public void refresh() {
 
 ```
 
-### Bean创建流程
+### Bean的创建和初始化(bean的生命周期)
 
-Bean的生成主要是三个阶段: 创建、属性赋值、初始化
+前面的流程准备好了Bean的定义(BeanDefinetion结构)，接下来Bean的生成主要是三个阶段: 创建、属性赋值、初始化
+
+**Bean的创建**
 
 ```java
 protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final @Nullable Object[] args) {
-
-		
-		BeanWrapper instanceWrapper = null;
-		
+        BeanWrapper instanceWrapper = null;
+        
         // 实例化对象
 		if (instanceWrapper == null) {
             // 调用InstantiationAwareBeanPostProcessor接口postProcessBeforeInstantiation方法
@@ -197,7 +207,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 				isSingletonCurrentlyInCreation(beanName));
 		if (earlySingletonExposure) {
 		  
-      //三级缓存，延迟暴露最终对象
+            //三级缓存，延迟暴露最终对象
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
 
@@ -209,9 +219,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 		}
 ```
 
-
-
-### Bean初始化阶段
+**Bean初始化阶段**
 
 ```java
 	protected Object initializeBean(final String beanName, final Object bean, @Nullable RootBeanDefinition mbd) {
