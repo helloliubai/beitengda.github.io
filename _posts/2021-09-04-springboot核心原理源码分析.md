@@ -16,7 +16,7 @@ tags:
 1. spring启动时做了什么，怎么扫描包加载类的?
 2. 我们常用的@Configuration @Component @Autowired注解的是在哪一步生效的，如何生效的?
 3. 自动配置是如何生效的，为什么业务工程引入一个starter包或者一个类似@EnableXXX这样的注解就可以开启某个功能了?
-4. springb的aop动态代理是怎么实现的(可能背面试题的同学都会答底层依赖cglib或者jdk，但再追问下就露怯了)
+4. springb的aop动态代理是怎么实现的
 
 ## 启动流程概览
 
