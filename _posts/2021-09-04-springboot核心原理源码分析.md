@@ -225,27 +225,27 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 **Bean初始化阶段**
 
 ```java
-	protected Object initializeBean(final String beanName, final Object bean, @Nullable RootBeanDefinition mbd) {
-  
-      //回调Aware接口 BeanNameAware BeanFactoryAware
-      invokeAwareMethods(beanName, bean);
+protected Object initializeBean(final String beanName, final Object bean, @Nullable RootBeanDefinition mbd) {
 
-      Object wrappedBean = bean;
-      if (mbd == null || !mbd.isSynthetic()) {
-      //执行BeanPostProcessor初始化前接口
-        wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
-      }
+    //回调Aware接口 BeanNameAware BeanFactoryAware
+    invokeAwareMethods(beanName, bean);
+
+    Object wrappedBean = bean;
+    if (mbd == null || !mbd.isSynthetic()) {
+    //执行BeanPostProcessor初始化前接口
+    wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+    }
+
+    //执行初始化代码 回调InitializingBean、指定的init_method方法
+    invokeInitMethods(beanName, wrappedBean, mbd);
     
-      //执行初始化代码 回调InitializingBean、指定的init_method方法
-      invokeInitMethods(beanName, wrappedBean, mbd);
-      
-      if (mbd == null || !mbd.isSynthetic()) {
-      //执行BeanPostProcessor初始化后接口
-        wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
-      }
+    if (mbd == null || !mbd.isSynthetic()) {
+    //执行BeanPostProcessor初始化后接口
+    wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
+    }
 
-      return wrappedBean;
-	}
+    return wrappedBean;
+}
 ```
 
 ## 常见问题
