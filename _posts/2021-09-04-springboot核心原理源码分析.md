@@ -144,7 +144,7 @@ public void refresh() {
                 //执行BeanFactoryPostProcessor扩展点
                 /**
                 这里最关键的一个类是ConfigurationClassPostProcessor，是在创建容器上下文时生成的，这个类会完成自动配置的实现。大概流程
-                1. 扫描BeanDefinetion,第一轮只扫描到启动类，然后根据启动类的@ComponentScan扫描对应的包下的类
+                1. 扫描BeanDefinetion,第一轮只扫描到启动类，然后根据启动类的@ComponentScan扫描对应的包下的类(如果类上有Component注解则把Bean定义维护在列表里)
                 2. 如果有@Configuration修饰的，则进一步处理
                  2.1 判断@Conditional注解的条件是否满足，不满足则跳过
                  2.2 如果类上有@ComponentScans注解，扫描递归处理
@@ -214,6 +214,9 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 		// 初始化
 		Object exposedObject = bean;
 		try {
+
+            //属性填充时会触发一类特殊的BeanPostProcessor：InstantiationAwareBeanPostProcessor,
+            //如AutowiredAnnotationBeanPostProcessor负责扫描@Autowired注解的成员将其注入
 			populateBean(beanName, mbd, instanceWrapper);
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
@@ -273,11 +276,11 @@ public @interface EnableAutoConfiguration {
 }
 ```
 
-### springboot的动态代理是怎么实现的？
+### springboot的aop是怎么实现的？
 
 简单来说分两步
 
-1. 先生成切面类和对一个的Advice对象
+1. 先生成切面类和对应的Advice对象
 2. 在Bean实例化之后，调用BeanPostProcessor初始化后置接口，会执行代理相关的初始化后置逻辑，返回代理对象。（如果对应的Bean有适用的Advice说明可以被代理）
 
 参考文章：https://blog.csdn.net/woshilijiuyi/article/details/83934407
@@ -302,5 +305,26 @@ public @interface EnableAutoConfiguration {
 
 ### FactoryBean的作用
 
+关于FactoryBean和BeanFactory的区别。一个是Bean一个是Bean容器，共同点是二者都是能生产其他Bean的“factory”。
+```java
+public interface FactoryBean<T> {
+    //生产对象
+    T getObject() throws Exception;
+    //返回对象类型
+    Class<?> getObjectType();
+    //是否单例
+    boolean isSingleton();
+}
+```
+spring关于Bean的创建初始化的很多地方对bean是否为FactoryBean做判断处理，如果是FactoryBean则创建的Bean其实是FactoryBean的getObject方法返回的对象。这样设计的应用主要有两种。
+
+1. 对接口进行动态代理。比如Mybatis的Mapper，我们只是在工程中定义了一个个接口，但是接口怎么能直接实例化出Bean呢，所以就用到FactoryBean的getObjectType方法，在这里动态代理出实际的对象来。
+```java
+@Override
+  public T getObject() throws Exception {
+    return getSqlSession().getMapper(this.mapperInterface);
+  }
+```
+2. 对一些复杂的Bean流程，在创建时依赖很多前置资源或条件的准备，在getObjectType方法里实现所依赖的逻辑。
 
 ![](https://gitee.com/geqiandebei/picture/raw/master/2020-12-6/1607270117025-QQ20201205-1.png)
